@@ -1,10 +1,13 @@
 package com.tienda.servicios;
 
-import com.tienda.entidades.Usuario;
-import com.tienda.repositorios.UsuarioRepositorio;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.tienda.entidades.Usuario;
+import com.tienda.repositorios.RolRepositorio;
+import com.tienda.repositorios.UsuarioRepositorio;
 
 @Service
 public class UsuarioServicio {

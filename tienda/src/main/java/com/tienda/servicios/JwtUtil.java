@@ -1,16 +1,20 @@
 package com.tienda.servicios;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class JwtUtil {
@@ -61,6 +65,6 @@ public class JwtUtil {
     public void setAuthentication(HttpServletRequest request, UserDetails userDetails) {
         // Establece la autenticación en el contexto de seguridad
         SecurityContextHolder.getContext().setAuthentication(
-                new JwtAuthenticationToken(userDetails, null, userDetails.getAuthorities()));
+                (Authentication) new JwtAuthenticationToken(userDetails, null, userDetails.getAuthorities()));
     }
 }
